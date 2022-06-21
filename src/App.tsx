@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
+import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ResidencyDescription from './components/ResidencyDescription';
@@ -11,12 +12,15 @@ interface ResidencyValues {
   description: string;
   characteristic: string[];
   icons: { characteristic: string, icon: string }[];
-  PropertiesAdresses: {
-    adress: {
-      district: string,
-      street: string
-    } 
-  }[];
+  district: string; 
+  street: string;
+  parcel: string;
+  // PropertiesAdresses: {
+  //   adress: {
+  //     district: string,
+  //     street: string
+  //   } 
+  // }[];
 }
 
 function App() {
@@ -25,7 +29,10 @@ function App() {
     description: "",
     characteristic: [],
     icons: [{ characteristic: "", icon: "" }],
-    PropertiesAdresses: [{adress: {district: "", street: ""}}],
+    district: "",
+    street: "",
+    parcel: "",
+    // PropertiesAdresses: [{adress: {district: "", street: ""}}],
   })
   
   const theme = {
@@ -34,6 +41,7 @@ function App() {
       secondary: '#FFA640',
       tertiary: '#494949',
       quaternary: '#4B166B',
+      quinary: '#FFFFFF',
     },
     background: {
       primary: "#FFFFFF",
@@ -44,7 +52,19 @@ function App() {
 
   async function recieveResidencyValues() {
     const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000");
-    setResidencyValues(data);
+    const { name, description, characteristic, icons, PropertiesAdresses, parcel } = data;
+    const { district, street } = PropertiesAdresses[0].adress;
+
+    const filteredValues = {
+      name, 
+      description, 
+      characteristic, 
+      icons, 
+      district, 
+      street,
+      parcel
+    };
+    setResidencyValues(filteredValues);
   }
 
   useEffect(() => {
@@ -56,12 +76,18 @@ function App() {
       <Header />
       <ResidencyDescription 
         name={residencyValues.name}
-        district={residencyValues.PropertiesAdresses[0].adress.district}
-        street={residencyValues.PropertiesAdresses[0].adress.street}
+        district={residencyValues.district}
+        street={residencyValues.street}
         description={residencyValues.description} 
         icons={residencyValues.icons} 
         characteristic={residencyValues.characteristic}
         />
+        <CallToAction 
+          name={residencyValues.name}
+          district={residencyValues.district}
+          street={residencyValues.street}
+          parcel={residencyValues.parcel}
+          />
       <Footer />
     </ThemeProvider>
   );
