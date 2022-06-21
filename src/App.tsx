@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
+import ActionsList from './components/ActionsList';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -9,6 +10,7 @@ import ResidencyDescription from './components/ResidencyDescription';
 import ResidencyImages from './components/ResidencyImages';
 import ResidencyProximities from './components/ResidencyProximities';
 import ResidencyVariants from './components/ResidencyVariants';
+import { GalleryContainer } from './styles';
 
 interface ResidencyValues {
   name: string;
@@ -111,7 +113,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <ResidencyImages media={residencyValues.media}/>
+      <GalleryContainer>
+        <ResidencyImages media={residencyValues.media}/>
+        <ActionsList />
+      </GalleryContainer>
       <ResidencyDescription 
         name={residencyValues.name}
         district={residencyValues.district}
