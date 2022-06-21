@@ -96,6 +96,7 @@ export const ProximitiesPlace = styled.figure`
       max-width: 172px;
       font-size: 20px;
       line-height: 30px;
+      border-width: 2px;
   }
   }
   img {
