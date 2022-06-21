@@ -106,7 +106,7 @@ export const DescriptionIcon = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-family: "Jost";
   font-size: 9px;
   font-weight: 500;
