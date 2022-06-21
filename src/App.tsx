@@ -23,7 +23,7 @@ interface ResidencyValues {
   proximities: {}
   variants: object[]
   value: string;
-  media: object[];
+  media: {media:string; type:string}[];
 }
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
     proximities: {},
     variants: [{}],
     value: "",
-    media: [{}]
+    media: [{media: "", type: ""}]
   })
   
   const theme = {
@@ -115,7 +115,7 @@ function App() {
       <Header />
       <GalleryContainer>
         <ResidencyImages media={residencyValues.media}/>
-        <ActionsList />
+        <ActionsList media={residencyValues.media}/>
       </GalleryContainer>
       <ResidencyDescription 
         name={residencyValues.name}
