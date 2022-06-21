@@ -71,16 +71,6 @@ export const ActionInstallments = styled.div`
     margin-left: 2rem;
   }
 
-
-
-  /* font-family: Nunito;
-font-size: 12px;
-font-weight: 900;
-line-height: 16px;
-letter-spacing: 0em;
-text-align: center; */
-
-
   h3 {
     font-family: "Jost";
     font-size: 20px;
