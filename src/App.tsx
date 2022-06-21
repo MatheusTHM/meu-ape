@@ -6,6 +6,7 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ResidencyDescription from './components/ResidencyDescription';
+import ResidencyProximities from './components/ResidencyProximities';
 
 interface ResidencyValues {
   name: string;
@@ -15,6 +16,7 @@ interface ResidencyValues {
   district: string; 
   street: string;
   parcel: string;
+  proximities: {}
   // PropertiesAdresses: {
   //   adress: {
   //     district: string,
@@ -32,6 +34,7 @@ function App() {
     district: "",
     street: "",
     parcel: "",
+    proximities: {},
     // PropertiesAdresses: [{adress: {district: "", street: ""}}],
   })
   
@@ -52,7 +55,7 @@ function App() {
 
   async function recieveResidencyValues() {
     const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000");
-    const { name, description, characteristic, icons, PropertiesAdresses, parcel } = data;
+    const { name, description, characteristic, icons, PropertiesAdresses, parcel, proximities } = data;
     const { district, street } = PropertiesAdresses[0].adress;
 
     const filteredValues = {
@@ -62,7 +65,8 @@ function App() {
       icons, 
       district, 
       street,
-      parcel
+      parcel,
+      proximities,
     };
     setResidencyValues(filteredValues);
   }
@@ -82,12 +86,13 @@ function App() {
         icons={residencyValues.icons} 
         characteristic={residencyValues.characteristic}
         />
-        <CallToAction 
-          name={residencyValues.name}
-          district={residencyValues.district}
-          street={residencyValues.street}
-          parcel={residencyValues.parcel}
-          />
+      <ResidencyProximities proximities={residencyValues.proximities}/>
+      <CallToAction 
+        name={residencyValues.name}
+        district={residencyValues.district}
+        street={residencyValues.street}
+        parcel={residencyValues.parcel}
+        />
       <Footer />
     </ThemeProvider>
   );
