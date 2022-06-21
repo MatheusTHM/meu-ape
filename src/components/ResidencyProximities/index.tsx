@@ -16,7 +16,6 @@ interface ProximitiesProps {
 
 const ResidencyProximities:FC<ProximitiesProps> = ({ proximities }) => {
   const proximitiesKeys = Object.keys(proximities);
-  console.log(proximitiesKeys);
 
   if(!proximitiesKeys.length) return null;
 
