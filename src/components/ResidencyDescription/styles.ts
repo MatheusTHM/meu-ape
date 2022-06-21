@@ -191,5 +191,10 @@ export const DescriptionText = styled.div`
     line-height: 30px;
     margin: 0;
     order: 2;
+
+    h2 {
+      font-size: 26px;
+      line-height: 38px;
+    }
   }
 `
