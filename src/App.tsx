@@ -6,6 +6,7 @@ import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ResidencyDescription from './components/ResidencyDescription';
+import ResidencyImages from './components/ResidencyImages';
 import ResidencyProximities from './components/ResidencyProximities';
 import ResidencyVariants from './components/ResidencyVariants';
 
@@ -20,6 +21,7 @@ interface ResidencyValues {
   proximities: {}
   variants: object[]
   value: string;
+  media: object[];
 }
 
 function App() {
@@ -34,6 +36,7 @@ function App() {
     proximities: {},
     variants: [{}],
     value: "",
+    media: [{}]
   })
   
   const theme = {
@@ -67,7 +70,7 @@ function App() {
     const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000");
     // https://newapi.meuprimeiroape.com.br/mpa/properties/d70e5e1f-9d13-49f7-beeb-d41f43560d60?income=4000"
 
-    const { name, description, characteristic, icons, PropertiesAdresses, PropertiesVariants, parcel, proximities, value } = data;
+    const { name, description, characteristic, icons, PropertiesAdresses, PropertiesVariants, parcel, proximities, value, PropertiesMedia } = data;
 
     const { district, street } = PropertiesAdresses[0].adress;
 
@@ -96,6 +99,7 @@ function App() {
       proximities,
       variants: filteredVariants,
       value: formatValue(value),
+      media: PropertiesMedia
     };
     setResidencyValues(filteredValues);
   }
@@ -107,6 +111,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header />
+      <ResidencyImages media={residencyValues.media}/>
       <ResidencyDescription 
         name={residencyValues.name}
         district={residencyValues.district}
