@@ -36,6 +36,7 @@ export const ActionAddress = styled.div`
     color: ${props => props.theme.text.primary};
     span {
       position: relative;
+      display: block;
       width: max-content;
       font: inherit;
       margin-right: 2.5rem;
@@ -50,6 +51,10 @@ export const ActionAddress = styled.div`
         height: 2px;
         border-radius: 5px;
         background-color: ${props => props.theme.background.tertiary};
+      }
+
+      @media screen and (min-width: 600px) {
+        display: initial;
       }
     }
   }

@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const Description = styled.section`
-  display: flex;
-`
-
-export const DescriptionContainer = styled.div`
+export const DescriptionContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,19 +10,24 @@ export const DescriptionContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 4rem 2rem;
+  padding: 4rem 2rem 0;
 
   @media screen and (min-width: 400px) {
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto 1fr 1fr; 
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 1rem;
   }
 
   @media screen and (min-width: 750px) {
     max-width: 1440px;
     grid-template-columns: unset;
     grid-template-rows: unset; 
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 0;
+    padding-right: 0;
   }
 `
 

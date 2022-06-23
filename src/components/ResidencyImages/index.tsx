@@ -6,8 +6,6 @@ interface ResidencyImagesProps {
 }
 
 const ResidencyImages:FC<ResidencyImagesProps> = ({ media }) => {
-  console.log(media);
-  
   return (
     <ResidencyGallery>
       {media.map(({media, type}:any, index) => {

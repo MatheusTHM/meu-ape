@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import ResidencyDescription from './components/ResidencyDescription';
 import ResidencyImages from './components/ResidencyImages';
+import ResidencyPricing from './components/ResidencyPricing';
 import ResidencyProximities from './components/ResidencyProximities';
 import ResidencyVariants from './components/ResidencyVariants';
 import { GalleryContainer } from './styles';
@@ -24,6 +25,15 @@ interface ResidencyValues {
   variants: object[]
   value: string;
   media: {media:string; type:string}[];
+  construtionStatus: string;
+  financed: string;
+  registry: string;
+  itbi: string;
+  signal: string;
+  constructionDeadline: { 
+    day:number | string, 
+    month:string 
+  }
 }
 
 function App() {
@@ -38,7 +48,13 @@ function App() {
     proximities: {},
     variants: [{}],
     value: "",
-    media: [{media: "", type: ""}]
+    media: [{media: "", type: ""}],
+    construtionStatus: "",
+    financed: "",
+    registry: "",
+    itbi: "",
+    signal: "",
+    constructionDeadline: { day: "", month: "" },
   })
   
   const theme = {
@@ -61,10 +77,13 @@ function App() {
     }
   };
 
-  function formatValue(value:number) {
+  function formatValue(value:number | string) {
     // Maybe create a function to process this value so it works for values with any lengths
-    const stringValue = value.toString()
-    const formatedValue = `${stringValue.substring(0, stringValue.length - 3)}.${stringValue.substring(stringValue.length - 3, stringValue.length)}`;
+    // If the value is a number it'll become a string
+    // Else verify if it has a '.' separating the cents
+    const stringValue = typeof value === 'number' ? value.toString() : value
+    const [price, cents] = stringValue.split(".")
+    const formatedValue = `${price.substring(0, price.length - 3)}.${price.substring(price.length - 3, price.length)}.${cents ? cents : "00"}`;
     return formatedValue;
   }
 
@@ -72,9 +91,35 @@ function App() {
     const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000");
     // https://newapi.meuprimeiroape.com.br/mpa/properties/d70e5e1f-9d13-49f7-beeb-d41f43560d60?income=4000"
 
-    const { name, description, characteristic, icons, PropertiesAdresses, PropertiesVariants, parcel, proximities, value, PropertiesMedia } = data;
+    const { 
+      name, 
+      description, 
+      characteristic, 
+      icons, 
+      proximities, 
+      value, 
+      financed, 
+      parcel,
+      registry,
+      itbi, 
+      construtionStatus,
+      constructionEndDate,
+      PropertiesFinancial,
+      PropertiesAdresses, 
+      PropertiesVariants, 
+      PropertiesMedia,
+     } = data;
 
     const { district, street } = PropertiesAdresses[0].adress;
+    const { signal } = PropertiesFinancial[0]
+    const signalPrice = value * signal
+
+    // More information required to know if the timezone should be considered or not
+    const deadlineDate = new Date(constructionEndDate)
+    const deadline = { 
+      day: deadlineDate.getDate(), 
+      month: deadlineDate.toLocaleString("default", {month: 'long'})
+    }
 
     const variants = PropertiesVariants.map(({ value, suite, PropertiesVariantsCharacteristics }:any) => {
       if(PropertiesVariantsCharacteristics.length) {
@@ -100,8 +145,14 @@ function App() {
       parcel,
       proximities,
       variants: filteredVariants,
+      media: PropertiesMedia,
+      construtionStatus,
       value: formatValue(value),
-      media: PropertiesMedia
+      financed: formatValue(financed),
+      registry: formatValue(registry),
+      itbi: formatValue(itbi),
+      signal: formatValue(signalPrice),
+      constructionDeadline: deadline,
     };
     setResidencyValues(filteredValues);
   }
@@ -124,6 +175,16 @@ function App() {
         description={residencyValues.description} 
         icons={residencyValues.icons} 
         characteristic={residencyValues.characteristic}
+        />
+      <ResidencyPricing 
+        value={residencyValues.value} 
+        construtionStatus={residencyValues.construtionStatus}
+        financed={residencyValues.financed}
+        registry={residencyValues.registry}
+        itbi={residencyValues.itbi}
+        signal={residencyValues.signal}
+        parcel={residencyValues.parcel}
+        constructionDeadline={residencyValues.constructionDeadline}
         />
       <ResidencyVariants 
         icons={residencyValues.icons}
