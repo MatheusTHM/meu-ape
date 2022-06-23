@@ -39,7 +39,7 @@ export const ActionAddress = styled.div`
       display: block;
       width: max-content;
       font: inherit;
-      margin-right: 2.5rem;
+      margin-right: 2rem;
       color: ${(props) => props.theme.text.primary};
 
       &::before {
@@ -55,6 +55,7 @@ export const ActionAddress = styled.div`
 
       @media screen and (min-width: 600px) {
         display: initial;
+        margin-right: 2.5rem;
       }
     }
   }
@@ -73,7 +74,6 @@ export const ActionInstallments = styled.div`
   @media screen and (min-width: 400px) {
     width: 190px;
     margin-top: 0;
-    margin-left: 2rem;
   }
 
   h3 {
