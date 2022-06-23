@@ -93,9 +93,7 @@ function App() {
   }
 
   async function recieveResidencyValues() {
-    const { data } = await axios.get(
-      "https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000"
-    );
+    const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/d70e5e1f-9d13-49f7-beeb-d41f43560d60?income=4000");
     // https://newapi.meuprimeiroape.com.br/mpa/properties/d70e5e1f-9d13-49f7-beeb-d41f43560d60?income=4000"
 
     const {
