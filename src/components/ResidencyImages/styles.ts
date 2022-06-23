@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ResidencyGallery = styled.section`
   position: relative;
@@ -13,7 +13,7 @@ export const ResidencyGallery = styled.section`
     grid-template-columns: 3fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
   }
-`
+`;
 
 export const GalleryGradient = styled.div`
   position: absolute;
@@ -22,10 +22,12 @@ export const GalleryGradient = styled.div`
   width: 100%;
   height: 400px;
   overflow: hidden;
-  background-image: linear-gradient(to top, rgba(0,0,0,0.50), rgba(0,0,0,0));
-`
-
-
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
+  );
+`;
 
 export const GalleryItem = styled.img`
   width: 100%;
@@ -38,7 +40,8 @@ export const GalleryItem = styled.img`
   &:nth-child(2) {
     grid-column: 2 / 3;
   }
-  &:nth-child(3), &:nth-child(4) {
+  &:nth-child(3),
+  &:nth-child(4) {
     display: none;
     grid-column: span 1;
     grid-row: span 1;
@@ -52,8 +55,9 @@ export const GalleryItem = styled.img`
       grid-column: span 1;
       grid-row: span 2;
     }
-    &:nth-child(3), &:nth-child(4) {
+    &:nth-child(3),
+    &:nth-child(4) {
       display: block;
     }
   }
-`
+`;

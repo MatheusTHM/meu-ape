@@ -1,39 +1,39 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
-import ActionsList from './components/ActionsList';
-import CallToAction from './components/CallToAction';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import ResidencyDescription from './components/ResidencyDescription';
-import ResidencyImages from './components/ResidencyImages';
-import ResidencyPricing from './components/ResidencyPricing';
-import ResidencyProximities from './components/ResidencyProximities';
-import ResidencyVariants from './components/ResidencyVariants';
-import { GalleryContainer } from './styles';
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import ActionsList from "./components/ActionsList";
+import CallToAction from "./components/CallToAction";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import ResidencyDescription from "./components/ResidencyDescription";
+import ResidencyImages from "./components/ResidencyImages";
+import ResidencyPricing from "./components/ResidencyPricing";
+import ResidencyProximities from "./components/ResidencyProximities";
+import ResidencyVariants from "./components/ResidencyVariants";
+import { GalleryContainer } from "./styles";
 
 interface ResidencyValues {
   name: string;
   description: string;
   characteristic: string[];
-  icons: { characteristic: string, icon: string }[];
-  district: string; 
+  icons: { characteristic: string; icon: string }[];
+  district: string;
   street: string;
   parcel: string;
-  proximities: {}
-  variants: object[]
+  proximities: {};
+  variants: object[];
   value: string;
-  media: {media:string; type:string}[];
+  media: { media: string; type: string }[];
   construtionStatus: string;
   financed: string;
   registry: string;
   itbi: string;
   signal: string;
-  constructionDeadline: { 
-    day:number | string, 
-    month:string 
-  }
+  constructionDeadline: {
+    day: number | string;
+    month: string;
+  };
 }
 
 function App() {
@@ -48,22 +48,22 @@ function App() {
     proximities: {},
     variants: [{}],
     value: "",
-    media: [{media: "", type: ""}],
+    media: [{ media: "", type: "" }],
     construtionStatus: "",
     financed: "",
     registry: "",
     itbi: "",
     signal: "",
     constructionDeadline: { day: "", month: "" },
-  })
-  
+  });
+
   const theme = {
     text: {
-      primary: '#353535',
-      secondary: '#FFA640',
-      tertiary: '#494949',
-      quaternary: '#4B166B',
-      quinary: '#FFFFFF',
+      primary: "#353535",
+      secondary: "#FFA640",
+      tertiary: "#494949",
+      quaternary: "#4B166B",
+      quinary: "#FFFFFF",
     },
     background: {
       primary: "#FFFFFF",
@@ -73,74 +73,87 @@ function App() {
     },
     border: {
       primary: "#353535",
-      secondary: "#B6B6B6"
-    }
+      secondary: "#B6B6B6",
+    },
   };
 
-  function formatValue(value:number | string) {
+  function formatValue(value: number | string) {
     // Maybe create a function to process this value so it works for values with any lengths
     // If the value is a number it'll become a string
     // Else verify if it has a '.' separating the cents
-    const stringValue = typeof value === 'number' ? value.toString() : value
-    const [price, cents] = stringValue.split(".")
-    const formatedValue = `${price.substring(0, price.length - 3)}.${price.substring(price.length - 3, price.length)}.${cents ? cents : "00"}`;
+    const stringValue = typeof value === "number" ? value.toString() : value;
+    const [price, cents] = stringValue.split(".");
+    const formatedValue = `${price.substring(
+      0,
+      price.length - 3
+    )}.${price.substring(price.length - 3, price.length)}.${
+      cents ? cents : "00"
+    }`;
     return formatedValue;
   }
 
   async function recieveResidencyValues() {
-    const { data } = await axios.get("https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000");
+    const { data } = await axios.get(
+      "https://newapi.meuprimeiroape.com.br/mpa/properties/6f3c8042-4ea7-4ca2-a828-d4c79eca9f20?income=4000"
+    );
     // https://newapi.meuprimeiroape.com.br/mpa/properties/d70e5e1f-9d13-49f7-beeb-d41f43560d60?income=4000"
 
-    const { 
-      name, 
-      description, 
-      characteristic, 
-      icons, 
-      proximities, 
-      value, 
-      financed, 
+    const {
+      name,
+      description,
+      characteristic,
+      icons,
+      proximities,
+      value,
+      financed,
       parcel,
       registry,
-      itbi, 
+      itbi,
       construtionStatus,
       constructionEndDate,
       PropertiesFinancial,
-      PropertiesAdresses, 
-      PropertiesVariants, 
+      PropertiesAdresses,
+      PropertiesVariants,
       PropertiesMedia,
-     } = data;
+    } = data;
 
     const { district, street } = PropertiesAdresses[0].adress;
-    const { signal } = PropertiesFinancial[0]
-    const signalPrice = value * signal
+    const { signal } = PropertiesFinancial[0];
+    const signalPrice = value * signal;
 
     // More information required to know if the timezone should be considered or not
-    const deadlineDate = new Date(constructionEndDate)
-    const deadline = { 
-      day: deadlineDate.getDate(), 
-      month: deadlineDate.toLocaleString("default", {month: 'long'})
-    }
+    const deadlineDate = new Date(constructionEndDate);
+    const deadline = {
+      day: deadlineDate.getDate(),
+      month: deadlineDate.toLocaleString("default", { month: "long" }),
+    };
 
-    const variants = PropertiesVariants.map(({ value, suite, PropertiesVariantsCharacteristics }:any) => {
-      if(PropertiesVariantsCharacteristics.length) {
-        return { 
-          value: formatValue(value),
-          suite,
-          firstCharacteristic: PropertiesVariantsCharacteristics[0].characteristic, 
-          secondCharacteristic: PropertiesVariantsCharacteristics[1].characteristic,
+    const variants = PropertiesVariants.map(
+      ({ value, suite, PropertiesVariantsCharacteristics }: any) => {
+        if (PropertiesVariantsCharacteristics.length) {
+          return {
+            value: formatValue(value),
+            suite,
+            firstCharacteristic:
+              PropertiesVariantsCharacteristics[0].characteristic,
+            secondCharacteristic:
+              PropertiesVariantsCharacteristics[1].characteristic,
+          };
         }
+        return null;
       }
-      return null
-    })
+    );
 
-    const filteredVariants = variants.filter((variant: object | null) => variant !== null);
+    const filteredVariants = variants.filter(
+      (variant: object | null) => variant !== null
+    );
 
     const filteredValues = {
-      name, 
-      description, 
-      characteristic, 
-      icons, 
-      district, 
+      name,
+      description,
+      characteristic,
+      icons,
+      district,
       street,
       parcel,
       proximities,
@@ -158,26 +171,26 @@ function App() {
   }
 
   useEffect(() => {
-    recieveResidencyValues()
-  }, [])
+    recieveResidencyValues();
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <Header />
       <GalleryContainer>
-        <ResidencyImages media={residencyValues.media}/>
-        <ActionsList media={residencyValues.media}/>
+        <ResidencyImages media={residencyValues.media} />
+        <ActionsList media={residencyValues.media} />
       </GalleryContainer>
-      <ResidencyDescription 
+      <ResidencyDescription
         name={residencyValues.name}
         district={residencyValues.district}
         street={residencyValues.street}
-        description={residencyValues.description} 
-        icons={residencyValues.icons} 
+        description={residencyValues.description}
+        icons={residencyValues.icons}
         characteristic={residencyValues.characteristic}
-        />
-      <ResidencyPricing 
-        value={residencyValues.value} 
+      />
+      <ResidencyPricing
+        value={residencyValues.value}
         construtionStatus={residencyValues.construtionStatus}
         financed={residencyValues.financed}
         registry={residencyValues.registry}
@@ -185,19 +198,19 @@ function App() {
         signal={residencyValues.signal}
         parcel={residencyValues.parcel}
         constructionDeadline={residencyValues.constructionDeadline}
-        />
-      <ResidencyVariants 
+      />
+      <ResidencyVariants
         icons={residencyValues.icons}
-        variants={residencyValues.variants}  
+        variants={residencyValues.variants}
         value={residencyValues.value}
-        />
-      <ResidencyProximities proximities={residencyValues.proximities}/>
-      <CallToAction 
+      />
+      <ResidencyProximities proximities={residencyValues.proximities} />
+      <CallToAction
         name={residencyValues.name}
         district={residencyValues.district}
         street={residencyValues.street}
         parcel={residencyValues.parcel}
-        />
+      />
       <Footer />
     </ThemeProvider>
   );

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CallToActionContainer = styled.div`
   display: flex;
@@ -6,11 +6,11 @@ export const CallToActionContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: ${props => props.theme.background.secondary};
+  background-color: ${(props) => props.theme.background.secondary};
   @media screen and (min-width: 750px) {
     display: none;
   }
-`
+`;
 
 export const ActionInfo = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const ActionInfo = styled.div`
   }
 
   /* padding: 2rem 4.5rem; */
-`
+`;
 
 export const ActionAddress = styled.div`
   h2 {
@@ -33,14 +33,14 @@ export const ActionAddress = styled.div`
     font-size: 24px;
     font-weight: 700;
     line-height: 33px;
-    color: ${props => props.theme.text.primary};
+    color: ${(props) => props.theme.text.primary};
     span {
       position: relative;
       display: block;
       width: max-content;
       font: inherit;
       margin-right: 2.5rem;
-      color: ${props => props.theme.text.primary};
+      color: ${(props) => props.theme.text.primary};
 
       &::before {
         content: "";
@@ -50,7 +50,7 @@ export const ActionAddress = styled.div`
         width: 1rem;
         height: 2px;
         border-radius: 5px;
-        background-color: ${props => props.theme.background.tertiary};
+        background-color: ${(props) => props.theme.background.tertiary};
       }
 
       @media screen and (min-width: 600px) {
@@ -63,13 +63,13 @@ export const ActionAddress = styled.div`
     font-size: 16px;
     font-weight: 500;
     line-height: 23px;
-    color: ${props => props.theme.text.primary};
+    color: ${(props) => props.theme.text.primary};
   }
-`
+`;
 
 export const ActionInstallments = styled.div`
   margin-top: 1rem;
-  
+
   @media screen and (min-width: 400px) {
     width: 190px;
     margin-top: 0;
@@ -82,7 +82,7 @@ export const ActionInstallments = styled.div`
     font-weight: 500;
     line-height: 29px;
     color: inherit;
-    color: ${props => props.theme.text.tertiary};
+    color: ${(props) => props.theme.text.tertiary};
 
     strong {
       position: relative;
@@ -106,7 +106,7 @@ export const ActionInstallments = styled.div`
       }
     }
   }
-`
+`;
 
 export const ActionButton = styled.button`
   width: 100%;
@@ -117,7 +117,7 @@ export const ActionButton = styled.button`
   line-height: 54px;
   text-align: center;
   border: none;
-  background-color: ${props => props.theme.background.tertiary};
-  color: ${props => props.theme.text.quinary};
+  background-color: ${(props) => props.theme.background.tertiary};
+  color: ${(props) => props.theme.text.quinary};
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-`
+`;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ModalContainer = styled.button`
   position: fixed;
@@ -11,7 +11,7 @@ export const ModalContainer = styled.button`
   cursor: pointer;
   z-index: 3;
   overflow: hidden;
-`
+`;
 
 export const ModalContent = styled.div`
   position: fixed;
@@ -28,17 +28,17 @@ export const ModalContent = styled.div`
   @media screen and (min-width: 500px) {
     width: 70%;
   }
-`
+`;
 
 interface ModalButtonProps {
-  target: 'previous' | 'next';
+  target: "previous" | "next";
   able: boolean;
 }
 
 export const ModalButton = styled.button<ModalButtonProps>`
   position: absolute;
   top: calc(50% - 16px);
-  ${props => props.target === 'previous' ? `left: 0;` : `right: 0;` }
+  ${(props) => (props.target === "previous" ? `left: 0;` : `right: 0;`)}
   width: 64px;
   height: 64px;
   border-radius: 50%;
@@ -48,16 +48,17 @@ export const ModalButton = styled.button<ModalButtonProps>`
   cursor: pointer;
 
   @media screen and (min-width: 500px) {
-    ${props => props.target === 'previous' ? `left: -84px;` : `right: -84px;` }
+    ${(props) =>
+      props.target === "previous" ? `left: -84px;` : `right: -84px;`}
   }
 
   svg {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    ${props => !props.able && `filter: grayscale(1)` }
+    ${(props) => !props.able && `filter: grayscale(1)`}
   }
-`
+`;
 
 export const ImageItem = styled.figure`
   width: 100%;
@@ -73,4 +74,4 @@ export const ImageItem = styled.figure`
       transform: scale(1.5);
     } */
   }
-`
+`;

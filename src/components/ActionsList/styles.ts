@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ActionsListContainer = styled.ul`
   position: absolute;
@@ -20,7 +20,7 @@ export const ActionsListContainer = styled.ul`
   @media screen and (min-width: 750px) {
     bottom: -2.5rem;
   }
-`
+`;
 
 export const ActionsItem = styled.li`
   display: flex;
@@ -29,7 +29,7 @@ export const ActionsItem = styled.li`
   justify-content: center;
   width: 54px;
   height: 54px;
-  margin: .25rem;
+  margin: 0.25rem;
   border-radius: 50%;
   font-family: "Jost";
   font-size: 12px;
@@ -37,8 +37,8 @@ export const ActionsItem = styled.li`
   line-height: 19px;
   text-align: center;
   text-transform: capitalize;
-  color: ${props => props.theme.text.quinary};
-  background-color: ${props => props.theme.background.tertiary};
+  color: ${(props) => props.theme.text.quinary};
+  background-color: ${(props) => props.theme.background.tertiary};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   list-style: none;
   overflow: hidden;
@@ -52,16 +52,15 @@ export const ActionsItem = styled.li`
   svg {
     height: 45%;
     path {
-      fill: ${props => props.theme.background.primary};
+      fill: ${(props) => props.theme.background.primary};
     }
   }
 
   p {
     font: inherit;
-    color: ${props => props.theme.text.quinary};
+    color: ${(props) => props.theme.text.quinary};
   }
-
-`
+`;
 
 export const ActionButton = styled.button`
   display: flex;
@@ -74,4 +73,4 @@ export const ActionButton = styled.button`
   border: none;
   cursor: pointer;
   font: inherit;
-`
+`;

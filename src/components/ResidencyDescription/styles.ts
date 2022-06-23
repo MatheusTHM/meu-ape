@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const DescriptionContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-`
+`;
 export const DescriptionContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,42 +13,41 @@ export const DescriptionContent = styled.div`
   padding: 4rem 2rem 0;
 
   @media screen and (min-width: 400px) {
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto 1fr 1fr; 
+    grid-template-rows: auto 1fr 1fr;
     padding: 4rem 1rem 1rem;
   }
 
   @media screen and (min-width: 750px) {
     max-width: 1440px;
     grid-template-columns: unset;
-    grid-template-rows: unset; 
+    grid-template-rows: unset;
   }
 
   @media screen and (min-width: 1440px) {
     padding-left: 0;
     padding-right: 0;
   }
-`
-
+`;
 
 export const ResidencyTitle = styled.div`
-grid-column: span 2;
+  grid-column: span 2;
   h1 {
     font-family: "Nunito";
     font-size: 22px;
     font-weight: 700;
     line-height: 30px;
-    color: ${props => props.theme.text.primary};
+    color: ${(props) => props.theme.text.primary};
     span {
       position: relative;
       display: block;
       width: max-content;
       font: inherit;
       margin-right: 2.5rem;
-      color: ${props => props.theme.text.primary};
+      color: ${(props) => props.theme.text.primary};
 
-      @media screen and (min-width: 400px) { 
+      @media screen and (min-width: 400px) {
         display: unset;
       }
 
@@ -60,11 +59,11 @@ grid-column: span 2;
         width: 1rem;
         height: 2px;
         border-radius: 5px;
-        background-color: ${props => props.theme.background.tertiary};
+        background-color: ${(props) => props.theme.background.tertiary};
       }
     }
-    
-    @media screen and (min-width: 750px) { 
+
+    @media screen and (min-width: 750px) {
       font-size: 32px;
       line-height: 44px;
     }
@@ -74,14 +73,14 @@ grid-column: span 2;
     font-size: 12px;
     font-weight: 500;
     line-height: 17px;
-    color: ${props => props.theme.text.primary};
+    color: ${(props) => props.theme.text.primary};
 
     @media screen and (min-width: 750px) {
       font-size: 18px;
       line-height: 25px;
     }
   }
-`
+`;
 
 export const IconsContainer = styled.div`
   display: flex;
@@ -90,7 +89,7 @@ export const IconsContainer = styled.div`
     grid-column: span 2;
     margin: 1.5rem 0;
   }
-`
+`;
 
 export const DescriptionIcons = styled.div`
   display: grid;
@@ -102,7 +101,7 @@ export const DescriptionIcons = styled.div`
     align-items: flex-start;
     justify-content: space-between;
   }
-`
+`;
 
 export const DescriptionIcon = styled.div`
   display: flex;
@@ -114,7 +113,7 @@ export const DescriptionIcon = styled.div`
   font-weight: 500;
   line-height: 13px;
   text-align: center;
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text.primary};
   img {
     width: 50%;
     max-width: 67px;
@@ -135,7 +134,7 @@ export const DescriptionIcon = styled.div`
       width: 100%;
     }
   }
-`
+`;
 
 export const DescriptionCharacteristics = styled.ul`
   display: grid;
@@ -145,7 +144,7 @@ export const DescriptionCharacteristics = styled.ul`
     order: 3;
     margin-left: 2rem;
   }
-`
+`;
 
 export const DescriptionItem = styled.li`
   position: relative;
@@ -154,18 +153,18 @@ export const DescriptionItem = styled.li`
   font-weight: 400;
   line-height: 16px;
   margin-left: 1.5rem;
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text.primary};
   &::marker {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    color: ${props => props.theme.background.tertiary};
+    color: ${(props) => props.theme.background.tertiary};
   }
   @media screen and (min-width: 750px) {
     font-size: 20px;
-    line-height: 24px;  
+    line-height: 24px;
   }
-`
+`;
 
 export const DescriptionText = styled.div`
   display: flex;
@@ -177,14 +176,14 @@ export const DescriptionText = styled.div`
   font-size: 13px;
   font-weight: 500;
   line-height: 19px;
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text.primary};
   h2 {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     font-family: inherit;
     font-size: 18px;
     font-weight: 700;
     line-height: 26px;
-    color: ${props => props.theme.text.primary};
+    color: ${(props) => props.theme.text.primary};
   }
 
   @media screen and (min-width: 400px) {
@@ -204,4 +203,4 @@ export const DescriptionText = styled.div`
       line-height: 38px;
     }
   }
-`
+`;

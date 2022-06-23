@@ -1,23 +1,34 @@
-import { FC } from "react"
+import { FC } from "react";
 
-import { ProximitiesContainer, ProximitiesContent, ProximitiesType, ProximitiesPlace, ValuesContainer, ProximitiesNames, ProximitiesDistance } from "./styles"
+import {
+  ProximitiesContainer,
+  ProximitiesContent,
+  ProximitiesType,
+  ProximitiesPlace,
+  ValuesContainer,
+  ProximitiesNames,
+  ProximitiesDistance,
+} from "./styles";
 
 interface ProximitiesProps {
-  proximities: Record<string,{
-    name: string,
-    category: string,
-    relevance: number,
-    distance: string,
-    duration: string,
-    address: string,
-    order: number,
-  }[]>
+  proximities: Record<
+    string,
+    {
+      name: string;
+      category: string;
+      relevance: number;
+      distance: string;
+      duration: string;
+      address: string;
+      order: number;
+    }[]
+  >;
 }
 
-const ResidencyProximities:FC<ProximitiesProps> = ({ proximities }) => {
+const ResidencyProximities: FC<ProximitiesProps> = ({ proximities }) => {
   const proximitiesKeys = Object.keys(proximities);
 
-  if(!proximitiesKeys.length) return null;
+  if (!proximitiesKeys.length) return null;
 
   return (
     <ProximitiesContainer>
@@ -26,18 +37,17 @@ const ResidencyProximities:FC<ProximitiesProps> = ({ proximities }) => {
           return (
             <ProximitiesType key={index}>
               <ProximitiesPlace>
-                <figcaption>
-                  {proximity}
-                </figcaption>
+                <figcaption>{proximity}</figcaption>
                 {/* Type "Outros" doesn't have an unique icon */}
                 {/* Utilizing onError as a fallback to bring a default icon */}
-                <img 
-                  src={`icons/info-${proximity}.svg`} 
+                <img
+                  src={`icons/info-${proximity}.svg`}
                   onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
-                    currentTarget.src="icons/info-local.svg";
-                  }} 
-                  alt={proximity} />
+                    currentTarget.src = "icons/info-local.svg";
+                  }}
+                  alt={proximity}
+                />
               </ProximitiesPlace>
               <ValuesContainer>
                 <ProximitiesNames>
@@ -56,7 +66,7 @@ const ResidencyProximities:FC<ProximitiesProps> = ({ proximities }) => {
         })}
       </ProximitiesContent>
     </ProximitiesContainer>
-  )
-}
+  );
+};
 
-export default ResidencyProximities
+export default ResidencyProximities;

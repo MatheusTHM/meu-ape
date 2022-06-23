@@ -1,18 +1,18 @@
 import { FC, useState } from "react";
-import { ActionsListContainer, ActionsItem, ActionButton } from "./styles"
-import { ReactComponent as Gallery } from "../../assets/images/gallery.svg" 
-import { ReactComponent as Video } from "../../assets/images/video-play.svg" 
-import { ReactComponent as Plan } from "../../assets/images/element-2.svg" 
-import { ReactComponent as Tour } from "../../assets/images/3d-rotate.svg" 
-import { ReactComponent as Map } from "../../assets/images/map.svg" 
-import { ReactComponent as Location } from "../../assets/images/location.svg" 
+import { ActionsListContainer, ActionsItem, ActionButton } from "./styles";
+import { ReactComponent as Gallery } from "../../assets/images/gallery.svg";
+import { ReactComponent as Video } from "../../assets/images/video-play.svg";
+import { ReactComponent as Plan } from "../../assets/images/element-2.svg";
+import { ReactComponent as Tour } from "../../assets/images/3d-rotate.svg";
+import { ReactComponent as Map } from "../../assets/images/map.svg";
+import { ReactComponent as Location } from "../../assets/images/location.svg";
 import GalleryModal from "../GalleryModal";
 interface ActionsListProps {
-  media: {media:string; type:string}[];
+  media: { media: string; type: string }[];
 }
 
-const ActionsList:FC<ActionsListProps> = ({ media }) => {
-  const [modalActive, setModalActive] = useState(false)
+const ActionsList: FC<ActionsListProps> = ({ media }) => {
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <>
@@ -44,10 +44,13 @@ const ActionsList:FC<ActionsListProps> = ({ media }) => {
           <p>Rua</p>
         </ActionsItem>
       </ActionsListContainer>
-      <GalleryModal modalActive={modalActive} setModalActive={setModalActive} media={media}/>
+      <GalleryModal
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        media={media}
+      />
     </>
+  );
+};
 
-  )
-}
-
-export default ActionsList
+export default ActionsList;
