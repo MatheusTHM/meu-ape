@@ -19,13 +19,14 @@ export const DescriptionContent = styled.div`
   @media screen and (min-width: 400px) {
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 3rem 1fr 1fr; 
+    grid-template-rows: auto 1fr 1fr; 
     padding: 4rem 1rem;
   }
 
   @media screen and (min-width: 750px) {
     max-width: 1440px;
     grid-template-columns: unset;
+    grid-template-rows: unset; 
   }
 `
 
@@ -97,7 +98,7 @@ export const DescriptionIcons = styled.div`
   height: 100%;
   @media screen and (min-width: 750px) {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 `
@@ -118,6 +119,7 @@ export const DescriptionIcon = styled.div`
     max-width: 67px;
     max-height: 67px;
   }
+
   @media screen and (min-width: 400px) {
     img {
       width: 80%;
@@ -127,6 +129,10 @@ export const DescriptionIcon = styled.div`
   @media screen and (min-width: 750px) {
     font-size: 17px;
     line-height: 25px;
+
+    img {
+      width: 100%;
+    }
   }
 `
 

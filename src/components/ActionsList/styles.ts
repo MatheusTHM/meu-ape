@@ -31,10 +31,6 @@ export const ActionsItem = styled.li`
   height: 54px;
   margin: .25rem;
   border-radius: 50%;
-  background-color: ${props => props.theme.background.tertiary};
-  list-style: none;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
   font-family: "Jost";
   font-size: 12px;
   font-weight: 500;
@@ -42,6 +38,10 @@ export const ActionsItem = styled.li`
   text-align: center;
   text-transform: capitalize;
   color: ${props => props.theme.text.quinary};
+  background-color: ${props => props.theme.background.tertiary};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  list-style: none;
+  overflow: hidden;
 
   @media screen and (min-width: 750px) {
     width: 93px;

@@ -1,5 +1,5 @@
 import { useState, FC } from "react";
-import { ImageItem, ModalContainer, ModalContent, ModalButton, ModalCloseButton } from "./styles"
+import { ImageItem, ModalContainer, ModalContent, ModalButton } from "./styles"
 import { ReactComponent as Previous } from "../../assets/images/previous-icon-white.svg" 
 import { ReactComponent as Next } from "../../assets/images/next-icon-white.svg" 
 import { ReactComponent as Close } from "../../assets/images/close-icon.svg" 
@@ -22,13 +22,9 @@ const GalleryModal:FC<ModalProps> = ({ modalActive, setModalActive, media }) => 
   if(!modalActive) return null;
 
   return (
-    <ModalContainer>
+    <>
+      <ModalContainer onClick={() => setModalActive(false)}/>
       <ModalContent>
-
-        <ModalCloseButton onClick={() => setModalActive(false)}>
-          <Close  />
-        </ModalCloseButton>
-
         <ModalButton able={modalIndex > 0} target="previous" onClick={() => handleModalIndex(modalIndex - 1)}>
           <Previous />
         </ModalButton>
@@ -40,9 +36,8 @@ const GalleryModal:FC<ModalProps> = ({ modalActive, setModalActive, media }) => 
         <ImageItem  >
           <img src={media[modalIndex].media} alt={media[modalIndex].type} />
         </ImageItem>
-
       </ModalContent>
-    </ModalContainer>
+    </>
   )
 }
 
